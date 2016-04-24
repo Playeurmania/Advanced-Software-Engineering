@@ -14,8 +14,8 @@ public abstract class JeuxCartes {
 	
 	public class Carte{
 		
-		private int valeur;
-		private String famille;
+		public int valeur;
+		public String famille;
 		
 		private Carte(int val, String fam){
 			this.valeur = val;
@@ -23,7 +23,15 @@ public abstract class JeuxCartes {
 		}
 		
 		public String toString(){
-			return this.valeur+" de "+this.famille;
+			if (this.valeur == 11){
+				return "Valet de "+this.famille;
+			} else if (this.valeur == 12){
+				return "Dame de "+this.famille;
+			} else if (this.valeur == 13){
+				return "Roi de "+this.famille;
+			} else {
+				return this.valeur+" de "+this.famille;
+			}
 		}
 	}
 	
@@ -88,4 +96,4 @@ public abstract class JeuxCartes {
         	}
         }
 	}
-} 
+}  
