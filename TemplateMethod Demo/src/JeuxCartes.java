@@ -4,13 +4,12 @@ public abstract class JeuxCartes {
 	
 	abstract void initialisation(int nbJoueurs);
 	abstract void débutJeu(int nbJoueurs);
-	abstract void tour();
 	abstract void finJeu();
 	
-	public int[] valeurs;
-	public String[] familles;
-	public Joueur[] joueurs;
-	public int compteur;
+	public int[] valeurs = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+	public String[] familles = {"Pique", "Coeur", "Trèfle", "Carreau"};
+	public Joueur[] joueurs = {new Joueur(1), new Joueur(2)};
+
 	
 	
 	public class Carte{
@@ -29,9 +28,9 @@ public abstract class JeuxCartes {
 	}
 	
 	public class Joueur{
-		public ArrayList<Carte> main;
-		public ArrayList<Carte> défausse;
-		public int numero;
+		ArrayList<Carte> main;
+		ArrayList<Carte> défausse;
+		int numero;
 		
 		public Joueur(int i){
 			
@@ -41,8 +40,15 @@ public abstract class JeuxCartes {
 		}
 		
 		
+		
 	}
-
+	
+	public final void jeu(int nbjoueurs){
+		initialisation(nbjoueurs);
+		débutJeu(nbjoueurs);
+		finJeu();
+	}
+	
 	public final void distribution(){
 		
 		/**
@@ -50,11 +56,12 @@ public abstract class JeuxCartes {
 		 */
 		
 		System.out.println("Création des cartes");
-		Carte[] deck = new Carte[valeurs.length*familles.length];
+		Carte[] deck = new Carte[(valeurs.length)*(familles.length)];
 		int u = 0;
 		for (int i : valeurs){	
 			for(String j : familles){
 				deck[u]=new Carte(i,j);
+				u++;
 			}
 		}
 		System.out.println("Deck complet");
@@ -76,18 +83,9 @@ public abstract class JeuxCartes {
          * Distribution des cartes
          */
         for (Joueur j : joueurs){
-        	for (int i=0; i<(deck.length%joueurs.length); i++){
+        	for (int i=0; i<(deck.length/joueurs.length); i++){
         		j.main.add(deck[j.numero+i]);
-;        		
         	}
         }
-        
-        
-        
-		
-		
-		
 	}
-
-
-}
+} 
