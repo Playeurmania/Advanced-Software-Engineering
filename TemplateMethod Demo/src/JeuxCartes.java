@@ -3,12 +3,14 @@ import java.util.ArrayList;
 public abstract class JeuxCartes {
 	
 	abstract void initialisation(int nbJoueurs);
-	abstract void débutJeu();
+	abstract void débutJeu(int nbJoueurs);
+	abstract void tour();
 	abstract void finJeu();
 	
 	public int[] valeurs;
 	public String[] familles;
 	public Joueur[] joueurs;
+	public int compteur;
 	
 	
 	public class Carte{
@@ -27,9 +29,9 @@ public abstract class JeuxCartes {
 	}
 	
 	public class Joueur{
-		private ArrayList<Carte> main;
-		private ArrayList<Carte> défausse;
-		private int numero;
+		public ArrayList<Carte> main;
+		public ArrayList<Carte> défausse;
+		public int numero;
 		
 		public Joueur(int i){
 			
@@ -40,11 +42,7 @@ public abstract class JeuxCartes {
 		
 		
 	}
-	
-	public final void jeu(int nbjoueurs){
-		
-	}
-	
+
 	public final void distribution(){
 		
 		/**

@@ -3,41 +3,66 @@ import java.util.ArrayList;
 public class BatailleCorse extends JeuxCartes{
 	
 	public boolean fini = false;
+	private ArrayList<Carte> pot;
 	
 	void initialisation(int nbJoueurs){
 		System.out.println("La partie de bataille corse est initialisée !");
+		joueurs = new Joueur[nbJoueurs];
+		for (int i=0; i<joueurs.length; i++){
+			joueurs[i] = new Joueur(i);
+		}
 		distribution();
+		compteur = 0;
 		
 	}
 	
-	void startPlay(Joueur joueur, Joueur autreJoueur){
+	void tour(){
+		
+		Joueur joueur = joueurs[compteur%joueurs.length]; // C'est à ce joueur de jouer.
 		System.out.println("Le joueur "+joueur.numero+" joue !");
+		/**
+		 * Jouer une carte
+		 */
 			Carte c = joueur.main.remove(0);
+			pot.add(c);
 			System.out.println("Le joueur "+joueur.numero+" a joué la carte "+c.toString());
-			joueur.défausse.add(c);
-			int taille = joueur.défausse.size();
-			if (taille>0){
-				if (joueur.défausse.get(taille) == joueur.défausse.get(taille-1)){
-					joueur.main.addAll(joueur.défausse);
-					joueur.défausse.clear();
+			
+			/**
+			 * Duel?
+			 */
+			int taille = pot.size();
+			if (taille>1){ // On vérifie qu'il y a au moins deux cartes dans le pot.
+				if (pot.get(taille) == pot.get(taille-1)){ // Les deux dernières cartes sont identiques
+					
+					if (Math.random()<0.5){ // Le gagnant du duel est désigné par un random.
+						joueur.main.addAll(pot);
+						pot.clear();
+					}
+					else{
+						joueurs[(compteur+1)%joueurs.length].main.addAll(pot);
+						pot.clear();
+					}	
 				} 
 			}
+			/**
+			 * Gagnant?
+			 */
 			if (joueur.main.size() == 0){
 				fini = true;
 			}
-		autreJoueur.défausse = joueur.défausse;
+			/**
+			 * Passage au joueur suivant
+			 */
+			compteur+=1;
 	}
 	
-	void débutJeu(){
+	void débutJeu(int nbJoueurs){
 		
-		Joueur joueur;
-		Joueur autreJoueur;
+		initialisation(nbJoueurs);
 	    	while(!fini){
-		      startPlay(joueur, autreJoueur);
-		      Joueur alter = joueur;
-		      joueur = autreJoueur;
-		      autreJoueur=alter;
+		      tour();
 	     	}
+	    finJeu();
 	   }
 	
 	void finJeu(){
