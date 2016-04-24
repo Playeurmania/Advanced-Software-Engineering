@@ -1,10 +1,12 @@
 import java.util.ArrayList;
 
+
 public class BatailleCorse extends JeuxCartes{
 	
 	public boolean fini = false;
 	private ArrayList<Carte> pot = new ArrayList<Carte>();
 	int compteur = 0;
+
 	
 	void initialisation(int nbJoueurs){
 		System.out.println("La partie de bataille corse est initialisée !");
