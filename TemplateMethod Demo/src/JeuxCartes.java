@@ -37,13 +37,11 @@ public abstract class JeuxCartes {
 	
 	public class Joueur{
 		ArrayList<Carte> main;
-		ArrayList<Carte> défausse;
 		int numero;
 		
 		public Joueur(int i){
 			
 			this.main = new ArrayList<Carte>();
-			this.défausse = new ArrayList<Carte>();
 			this.numero=i;
 		}
 		

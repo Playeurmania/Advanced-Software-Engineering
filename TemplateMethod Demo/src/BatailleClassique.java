@@ -7,7 +7,7 @@ public class BatailleClassique extends JeuxCartes{
 	int compteur = 0;
 	
 	void initialisation(int nbJoueurs){
-		System.out.println("La partie de bataille corse est initialisée !");
+		System.out.println("La partie de bataille classique est initialisée !");
 		joueurs = new Joueur[nbJoueurs];
 		for (int i=0; i<joueurs.length; i++){
 			joueurs[i] = new Joueur(i);
