@@ -12,8 +12,8 @@ public class Demo {
    }
 	
 	public static void main(String[] args){
-		jouerUnePartieDeBatailleCorse(2);
+		//jouerUnePartieDeBatailleCorse(2);
 		
-		//jouerUnePartieDeBataille(2);
+		jouerUnePartieDeBataille(2);
 	}
 }
