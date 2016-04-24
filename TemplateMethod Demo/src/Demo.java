@@ -1,17 +1,18 @@
 public class Demo {
 	
-   final void jouerUnePartie(int nombreDeJoueurs){
-	     initialize();
-	     int joueur = 0;
-	     boolean fini = false;
-	     while(!fini){
-	       startPlay(joueur);
-	       joueur = (joueur + 1) % nombreDeJoueurs;
-	     }
-	     proclamerLeVainqueur();
-	   }
+   final static void jouerUnePartieDeBatailleCorse(int nombreDeJoueurs){
+	     JeuxCartes game = new BatailleCorse();
+	   	 game.jeu(nombreDeJoueurs);
+	     
+   }
+   
+   /*final static void jouerUnePartieDeBataille(int nombreDeJoueurs){
+	   JeuxCartes game = new BatailleClassique();
+	   game.jeu(nombreDeJoueurs);
+   }*/
 	
 	public static void main(String[] args){
-		jouerUnePartie(2);
+		
+		jouerUnePartieDeBatailleCorse(2);
 	}
 }
