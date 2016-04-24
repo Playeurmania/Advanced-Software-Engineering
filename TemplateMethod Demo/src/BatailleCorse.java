@@ -1,32 +1,39 @@
+import java.util.ArrayList;
+
 public class BatailleCorse extends JeuxCartes{
 	
-	public String[] cartesJ1;
-	public String[] cartesJ2;
+	public ArrayList<Carte> cartesJ1;
+	public ArrayList<Carte> cartesJ2;
 	int joueur;
 	
 	
-	void initialize(){
+	void initialisation(int joueur){
 		System.out.println("La partie de bataille corse est initialisée !");
-		String[] cartesJ1 = {"Pi:3", "Ca:4"};
-		String[] cartesJ2 = {"Pi:7", "Co:12"};
+		ArrayList<Carte> cartesJ1 = null;
+		ArrayList<Carte> cartesJ2 = null;
 		
 	}
 	
 	void startPlay(int joueur){
 		System.out.println("Le joueur "+joueur+" joue !");
-		String[] current;
+		ArrayList<Carte> Current = null;
 		if (joueur == 0){
-			//On retire la première carte du tas du joueur
-			//On l'ajoute à current
-			if (/*current[n] == current[n-1]*/true){
-				//On rajoute current au tas du J1
-			} 		
-		} else {
-			//On fait l'inverse
-		}
+			Carte c = cartesJ1.remove(0);
+			Current.add(c);
+			int taille = Current.size();
+			if (taille>0){
+				if (Current.get(taille) == Current.get(taille-1)){
+					cartesJ1.addAll(Current);
+				} 
+			}	
+		} 
 	}
 	
-	void endplay(){
+	void débutJeu(){
+		
+	}
+	
+	void finJeu(){
 		
 	}
 }
