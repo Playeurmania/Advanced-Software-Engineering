@@ -94,4 +94,4 @@ public abstract class JeuxCartes {
         	}
         }
 	}
-}  
+} 

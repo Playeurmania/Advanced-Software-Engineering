@@ -7,7 +7,7 @@ public class BatailleClassique extends JeuxCartes{
 	int compteur = 0;
 	
 	void initialisation(int nbJoueurs){
-		System.out.println("La partie de bataille classique est initialisée !");
+		System.out.println("La partie de bataille est initialisée !");
 		joueurs = new Joueur[nbJoueurs];
 		for (int i=0; i<joueurs.length; i++){
 			joueurs[i] = new Joueur(i);
@@ -30,16 +30,17 @@ public class BatailleClassique extends JeuxCartes{
 			 * Duel?
 			 */
 			int taille = pot.size();
-			if (taille>1){ // On vérifie qu'il y a au moins deux cartes dans le pot.
-				if (pot.get(taille-1).valeur > pot.get(taille-2).valeur){ // Les deux dernières cartes sont identiques
-						joueur.main.addAll(pot);
-						pot.clear();
-					}
-					else{
-						joueurs[(compteur+1)%joueurs.length].main.addAll(pot);
-						pot.clear();
-					}	
-				} 
+			if (taille>1){// On vérifie qu'il y a au moins deux cartes dans le pot.
+				if (pot.get(taille-1).valeur > pot.get(taille-2).valeur) {//On teste les valeurs des cartes
+					joueur.main.addAll(pot);
+					pot.clear();	
+				} else if (pot.get(taille-1).valeur < pot.get(taille-2).valeur){
+					joueurs[(compteur+1)%joueurs.length].main.addAll(pot);
+					pot.clear();
+				} else {
+					System.out.println("Duel !");//En cas de duel, on rejoue chacun une carte par dessus
+				}
+			} 
 			/**
 			 * Gagnant?
 			 */
@@ -62,6 +63,6 @@ public class BatailleClassique extends JeuxCartes{
 	   }
 	
 	void finJeu(){
-		System.out.println("La partie est terminée !");
+		System.out.println("La partie est terminée en "+compteur+" coups!");
 	}
 }
